@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const carritoIcon = document.getElementById("carrito-icon");
     const carrito = document.getElementById("carrito");
-    const listaCarrito = document.getElementById("lista-carrito");
+    const listaCarrito = document.querySelector("#lista-carrito tbody");
+    const totalCarrito = document.querySelector("#lista-carrito tfoot tr td:last-child");
     const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
     const formAgregar = document.getElementById("form-agregar");
     const tienda = document.getElementById("tienda");
@@ -9,9 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let carritoCompras = [];
 
     // Función para agregar productos al carrito
-    function agregarAlCarrito(producto) {
+    function agregarAlCarrito(event) {
+        const producto = event.target.closest(".producto");
         const nombre = producto.querySelector("h3").textContent;
-        const precio = producto.querySelector("p:nth-of-type(4)").textContent;
+        let precio = producto.querySelector("p:last-of-type").textContent;
+
+        // Extraer solo el número del precio
+        precio = parseFloat(precio.replace("Precio: $", "").replace(",", "")); // Eliminar texto y coma y convertir a número
+
+        if (isNaN(precio)) {
+            console.error("Error: Precio no válido", precio);
+            return;
+        }
+
         const imagenSrc = producto.querySelector("img").src;
 
         const itemExistente = carritoCompras.find((item) => item.nombre === nombre);
@@ -27,27 +38,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para actualizar el carrito
     function actualizarCarrito() {
-        listaCarrito.innerHTML = "";
+        listaCarrito.innerHTML = ""; // Limpiar el contenido del tbody
+        let total = 0;
+
         carritoCompras.forEach((item) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <img src="${item.imagenSrc}" width="30">
-                ${item.nombre} - ${item.precio} (x${item.cantidad})
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><img src="${item.imagenSrc}" width="50"></td>
+                <td>${item.nombre}</td>
+                <td>$${item.precio.toLocaleString()}</td>
+                <td>${item.cantidad}</td>
+                <td><button class="eliminar-item" data-nombre="${item.nombre}">X</button></td>
             `;
-            listaCarrito.appendChild(li);
+            listaCarrito.appendChild(tr);
+            total += item.precio * item.cantidad;
         });
+
+        // Mostrar el total en la tabla
+        totalCarrito.textContent = `$${total.toLocaleString()}`;
+
+        // Agregar eventos a los botones de eliminar
+        document.querySelectorAll(".eliminar-item").forEach(btn => {
+            btn.addEventListener("click", eliminarItem);
+        });
+    }
+
+    // Función para eliminar un item del carrito
+    function eliminarItem(event) {
+        const nombre = event.target.dataset.nombre;
+        carritoCompras = carritoCompras.filter(item => item.nombre !== nombre);
+        actualizarCarrito();
     }
 
     // Función para asignar eventos a los botones de "Agregar al carrito"
     function asignarEventosAgregar() {
         const botonesAgregar = document.querySelectorAll(".cart-button");
         botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", function () {
-                const producto = boton.closest(".producto");
-                agregarAlCarrito(producto);
-                boton.classList.add("agregado");
-                setTimeout(() => boton.classList.remove("agregado"), 500);
-            });
+            boton.addEventListener("click", agregarAlCarrito);
         });
     }
 

@@ -16,12 +16,30 @@
             <img src="../imagenes/shopping-cart.png" alt="Carrito de compras" class="carrito-icon" id="carrito-icon" height="60px">
             <div class="carrito" id="carrito">
                 <h2>Carrito de Compras</h2>
-                <ul id="lista-carrito"></ul>
+                    <table id="lista-carrito">
+                   <thead>
+                      <tr>
+                        <th>Imagen</th>
+                        <th>Título</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                       </tr>
+                  </thead>
+                  <tbody id="lista-carrito">
+                        <!-- Los elementos del carrito se agregarán aqui dinamicamente -->
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3">Total:</td>
+                      <td><!-- Total del carrito --></td>
+                    </tr>
+                  </tfoot>
+                </table>
                 <button id="vaciar-carrito">Vaciar Carrito</button>
             </div>
         </div>
     </header>
-    
+<main>
     <section class="introduccion">
         <div class="descripcion">
             <img src="../imagenes/logo.webp" alt="Logo de la tienda" class="logo-descripcion">
@@ -250,7 +268,7 @@
             <button type="submit">Agregar Artículo</button>
         </form>
     </section>
-
+</main>
     <script src="../js/script.js"></script>
 </body>
 </html>
