@@ -1,0 +1,304 @@
+/* Estilos generales del cuerpo de la página */
+body {
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a2e; /* Fondo oscuro para un look gamer */
+    color: #ffffff; /* Texto blanco para contraste */
+}
+
+/* Estilos para el encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f3460; /* Azul oscuro */
+    color: white;
+    padding: 10px 20px;
+}
+
+/* Contenedor del logo y título */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilos para el logo principal */
+.logo {
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+/* Contenedor del carrito */
+.carrito-container {
+    position: relative;
+}
+
+/* Estilos para el carrito desplegable */
+.carrito {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #16213e; /* Azul más oscuro */
+    color: white;
+    padding: 10px;
+    border: 1px solid #e94560; /* Borde rojo */
+    z-index: 1000;
+    width: 300px;
+}
+
+/* Hace que el carrito aparezca cuando el usuario pasa el mouse sobre el contenedor */
+.carrito-container:hover .carrito {
+    display: block;
+}
+
+/* Contenedor de la descripción con el logo */
+.descripcion {
+    display: flex;
+    align-items: center;
+    margin: 40px;
+}
+
+/* Estilos para el logo en la descripción */
+.logo-descripcion {
+    width: 300px;
+    margin-right: 45px;
+    border-radius: 10px;
+}
+
+/* Sección de la tienda con una cuadrícula */
+.tienda {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Siempre 3 columnas */
+    gap: 20px; /* Espacio entre los elementos */
+    padding: 20px;
+    justify-content: center; /* Centra la cuadrícula */
+    max-width: 1200px; /* Ancho máximo para evitar que se estire demasiado */
+    margin: 0 auto; /* Centra la sección en la página */
+}
+
+/* Estilos de cada tarjeta de producto */
+.producto {
+    background: #16213e; /* Fondo azul oscuro */
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Estilos de la imagen dentro de cada producto */
+.producto img {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Efecto al pasar el cursor sobre un producto */
+.producto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* From Uiverse.io by EloWeld */ 
+.cart-button {
+    position: relative;
+    padding: 0.8em 0.7em;
+    font-family: Courier, monospace;
+    font-size: 1.1em;
+    color: #d0d0d0;
+    cursor: pointer;
+    line-height: 1;
+    background: transparent;
+    border-radius: 0.77em;
+    border: none;
+    transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  
+    transform-style: preserve-3d;
+    isolation: isolate;
+  }
+  
+  .glass-effect {
+    position: absolute;
+    inset: -0.45em;
+    border-radius: 1rem;
+    background: linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.1),
+      transparent 30%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.05)
+    );
+    z-index: -3;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+      0 0 20px 1px rgb(0 0 0 / 20%);
+    transition: box-shadow 0.12s ease;
+  }
+  
+  .cart-button::before {
+    content: "";
+    position: absolute;
+    inset: -0.8em;
+    background: radial-gradient(
+        circle at top center,
+        rgba(255, 225, 135, 0.5) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at top left,
+        rgba(102, 245, 240, 0.5) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at top right,
+        rgba(255, 134, 103, 0.5) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at bottom center,
+        rgba(147, 112, 219, 0.5) 0%,
+        transparent 80%
+      );
+    border-radius: inherit;
+    filter: blur(0.3em);
+    opacity: 0.8;
+    z-index: -2;
+    transition: all 0.12s ease;
+  }
+  
+  .cart-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(#363636, #242424);
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  .button-text {
+    position: relative;
+    background: linear-gradient(#242424, #363636);
+    padding: 0.85em 1.4em;
+    border: none;
+    border-radius: 999em;
+    display: block;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 2;
+    transition: all 0.12s ease;
+  }
+  
+  /* Hover эффекты */
+  .cart-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .cart-button:hover .glass-effect {
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+      0 0 30px 2px rgb(0 0 0 / 30%);
+  }
+  
+  .cart-button:hover::before {
+    opacity: 1;
+    filter: blur(0.4em);
+    transform: scale(1.05);
+  }
+  
+  .cart-button:hover .button-text {
+    transform: scale(1.02);
+  }
+  
+  .cart-button:hover::before {
+    opacity: 1;
+  }
+  
+  /* Active эффекты */
+  .cart-button:active {
+    transform: translateY(3px) scale(0.95);
+    transition: transform 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .cart-button:active .glass-effect {
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+      0 0 15px 0 rgb(0 0 0 / 20%);
+    opacity: 0.2;
+    transition: all 0.3s ease;
+  }
+  
+  .cart-button:active::before {
+    opacity: 1;
+    filter: blur(1em);
+    transform: scale(1.1);
+    inset: -0.45em;
+    transition: all 0.08s ease;
+  }
+  
+  .cart-button:active .button-text {
+    transform: scale(0.92);
+    background: linear-gradient(#1a1a1a, #2a2a2a);
+    transition: all 0.08s ease;
+  }
+  
+  /* Focus эффекты */
+  .cart-button:active {
+    outline: none;
+  }
+  
+
+/* Clase aplicada temporalmente cuando se agrega un producto */
+.agregado {
+    animation: agregadoEfecto 0.5s ease-in-out;
+}
+
+/* Estilos para la sección de agregar un nuevo artículo */
+.agregar-articulo {
+    padding: 20px;
+    background: #0f3460; /* Azul oscuro */
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de los inputs en el formulario */
+.agregar-articulo input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #e94560; /* Borde rojo */
+    border-radius: 5px;
+    background: #16213e; /* Fondo azul oscuro */
+    color: white;
+}
+
+/* Botón dentro de la sección de agregar artículo */
+.agregar-articulo button {
+    width: 100%;
+    background: #e94560; /* Rojo vibrante */
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+/* Cambia el color del botón al pasar el cursor */
+.agregar-articulo button:hover {
+    background: #d8345f; /* Rojo más oscuro */
+}
+
+/* Animación para el efecto al agregar un producto */
+@keyframes agregadoEfecto {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
